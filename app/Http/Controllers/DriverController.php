@@ -4,16 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use JWTAuth;
-use JWTFactory;
-use Tymon\JWTAuth\Exceptions\JWTException;
-
-use App\Models\Enforcer;
-
 use App\Http\Requests;
 use DB;
 
-class EnforcerController extends Controller
+class DriverController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,11 +16,17 @@ class EnforcerController extends Controller
      */
     public function index()
     {
-        $enforcers = DB::table('tblEnforcer')
-            ->where('blEnforcerDelete', 0)
-            ->get();
+        $driversInfo = DB::table('tblDriver')
+            ->join('tblLicenseType', 'tblLicenseType.intLicenseID', '=', 'tblDriver.intLicenseType')
+            ->select('tblDriver.*', 'tblLicenseType.strLicenseType')
+            ->where('tblDriver.blDriverDelete', 0)
+            ->first();
 
-        return response()->json($enforcers);
+
+        $drivers = new \stdClass();
+        $drivers->driversInfo = $driversInfo;
+
+        return response()->json($drivers);
     }
 
     /**
@@ -58,11 +58,7 @@ class EnforcerController extends Controller
      */
     public function show($id)
     {
-        $enforcer = DB::table('tblEnforcer')
-            ->where('intEnforcerID', $id)
-            ->first();
-
-        return response()->json($enforcer);
+        //
     }
 
     /**
@@ -97,21 +93,5 @@ class EnforcerController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function login(Request $request){
-        $enforcer = Enforcer::where('strEnforcerUsername', $request->username)
-            ->where('strEnforcerPassword', $request->password)
-            ->first();
-
-        $token = JWTAuth::fromUser($enforcer);
-
-        return response()->json(compact('token'));
-    }
-
-    public function securedPage(){
-        
-
-        return 'yey';
     }
 }

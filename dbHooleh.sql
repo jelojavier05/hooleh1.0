@@ -136,6 +136,39 @@ CREATE TABLE `tblRestriction` (
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+<<<<<<< Updated upstream
+=======
+LOCK TABLES `tblRestriction` WRITE;
+/*!40000 ALTER TABLE `tblRestriction` DISABLE KEYS */;
+INSERT INTO `tblRestriction`(intRestrictionID, strRestrictionDesc) VALUES (1, 'Motorcycles/ Motorized Tricycles'),(2, 'Vehicle up to 4500 KGS GVW'),
+(3, 'Vehicle above 4500 KGS GVW'),(4,'Automatic clutch up to 4500 KGS GVW'),(5,'Automatic clutch above 4500 KGS GVW'),(6,'Articulated vehicle 1600 KGS GVW and below'),
+(7,'Articulated vehicle 1601 up to 4500 KGS GVW'),(8,'Articulated vehicle 4501 kgs and above GVW');
+/*!40000 ALTER TABLE `tblRestriction` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tblViolationCategory`
+--
+
+DROP TABLE IF EXISTS `tblViolationCategory`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tblViolationCategory` (
+  `intViolationCategoryID` int(11) NOT NULL AUTO_INCREMENT,
+  `strViolatinCategoryDesc` varchar(255) NOT NULL,
+  `TimestampCreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`intViolationCategoryID`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+
+LOCK TABLES `tblViolationCategory` WRITE;
+/*!40000 ALTER TABLE `tblViolationCategory` DISABLE KEYS */;
+INSERT INTO `tblViolationCategory` VALUES (1,'Violations in connection with licensing'),(2,'Violation in connection with number of plates'),(3,'Weights and laod limits');
+/*!40000 ALTER TABLE `tblViolationCategory` ENABLE KEYS */;
+UNLOCK TABLES;
+
+>>>>>>> Stashed changes
 --
 -- Table structure for table `tblViolation`
 --
@@ -160,19 +193,14 @@ CREATE TABLE `tblViolation` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `tblViolationCategory`
+-- Dumping data for table `tblViolation`
 --
 
-DROP TABLE IF EXISTS `tblViolationCategory`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tblViolationCategory` (
-  `intViolationCategoryID` int(11) NOT NULL AUTO_INCREMENT,
-  `strViolatinCategoryDesc` varchar(255) NOT NULL,
-  `TimestampCreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`intViolationCategoryID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
+LOCK TABLES `tblViolation` WRITE;
+/*!40000 ALTER TABLE `tblViolation` DISABLE KEYS */;
+INSERT INTO `tblViolation` VALUES (1,'Driving without license','Driving without license',1),(2,'Driving without delinquent of expired license','Driving without delinquent of expired license',1),(3,'Driving with suspended or revoked or improper','Driving with suspended or revoked or improper',1),(4,'Motor Vehicle number plates not firmly attach','Motor Vehicle number plates not firmly attach',2),(5,'Obscure plates','Obscure plates',2),(6,'Improper display of a motor vehicle permanent','Improper display of a motor vehicle permanent',2),(7,'Load extending beyond the projected width wit','Load extending beyond the projected width wit',3),(8,'Operating a passenger truck (bus) with cargo ','Operating a passenger truck (bus) with cargo',3);
+/*!40000 ALTER TABLE `tblViolation` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `tblViolationFee`
