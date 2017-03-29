@@ -136,14 +136,6 @@ CREATE TABLE `tblRestriction` (
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
-LOCK TABLES `tblRestriction` WRITE;
-/*!40000 ALTER TABLE `tblDriver` DISABLE KEYS */;
-INSERT INTO `tblRestriction`(intRestrictionID, strRestrictionDesc) VALUES (1, 'Motorcycles/ Motorized Tricycles'),(2, 'Vehicle up to 4500 KGS GVW'),
-(3, 'Vehicle above 4500 KGS GVW'),(4,'Automatic clutch up to 4500 KGS GVW'),(5,'Automatic clutch above 4500 KGS GVW'),(6,'Articulated vehicle 1600 KGS GVW and below'),
-(7,'Articulated vehicle 1601 up to 4500 KGS GVW'),(8,'Articulated vehicle 4501 kgs and above GVW');
-/*!40000 ALTER TABLE `tblDriver` ENABLE KEYS */;
-UNLOCK TABLES;
-
 --
 -- Table structure for table `tblViolation`
 --

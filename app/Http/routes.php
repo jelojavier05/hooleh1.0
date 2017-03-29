@@ -16,3 +16,8 @@ Route::get('/', function () {
 });
 
 Route::resource('enforcers', 'EnforcerController');
+
+Route::post('/login', 'EnforcerController@login');
+
+Route::get('/securedPage', 'EnforcerController@securedPage')
+	->middleware('token.auth');

@@ -4,6 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use JWTAuth;
+use JWTFactory;
+use Tymon\JWTAuth\Exceptions\JWTException;
+
+use App\Models\Enforcer;
+
 use App\Http\Requests;
 use DB;
 
@@ -92,5 +98,21 @@ class EnforcerController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function login(Request $request){
+        $enforcer = Enforcer::where('strEnforcerUsername', $request->username)
+            ->where('strEnforcerPassword', $request->password)
+            ->first();
+
+        $token = JWTAuth::fromUser($enforcer);
+
+        return response()->json(compact('token'));
+    }
+
+    public function securedPage(){
+        
+
+        return 'yey';
     }
 }
